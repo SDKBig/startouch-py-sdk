@@ -12,9 +12,12 @@ sudo ip link set can0 up type can bitrate 1000000
 ip link show can0
 
 ## 编译（注意，编译和运行时的python版本要对应）
+
 conda create -n startouch python=3.10
 
 conda activate startouch
+
+pip install pybind11
 
 <!-- sudo apt-get install pybind11-dev -->
 
@@ -22,7 +25,9 @@ mkdir build
 
 cd build
 
-cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake .. -DCMAKE_BUILD_TYPE=Release  
+
+#这里选用Release模式 因为默认是Debug模式，在设计数值计算时会很慢，出现过逆解速度远慢于Release模式
 
 make -j&(nproc)
 
